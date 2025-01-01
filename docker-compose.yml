@@ -1,0 +1,15 @@
+version: '3.8'
+    services:
+      web:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "3452:3452"
+        environment:
+          - NODE_ENV=production
+          - VITE_STRIPE_KEY=${STRIPE_API_KEY}
+          - VITE_OPENROUTER_KEY=${OPENROUTER_API_KEY}
+        volumes:
+          - ./data:/app/data
+        restart: unless-stopped
